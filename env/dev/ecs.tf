@@ -42,14 +42,8 @@ resource "aws_ecs_cluster" "app" {
 }
 
 # The default docker image to deploy with the infrastructure.
-# Note that you can use the fargate CLI for application concerns
-# like deploying actual application images and environment variables
-# on top of the infrastructure provisioned by this template
-# https://github.com/turnerlabs/fargate
-# note that the source for the turner default backend image is here:
-# https://github.com/turnerlabs/turner-defaultbackend
 variable "default_backend_image" {
-  default = "quay.io/turner/turner-defaultbackend:0.2.0"
+  default = "$var.docker_image"
 }
 
 resource "aws_appautoscaling_target" "app_scale_target" {

@@ -4,9 +4,8 @@
  */
 
 # The AWS region to use for the dev environment's infrastructure
-# Currently, Fargate is only available in `us-east-1`.
 variable "region" {
-  default = "us-east-1"
+  default = "eu-west-1"
 }
 
 # Tags for the infrastructure
@@ -45,3 +44,8 @@ variable "private_subnets" {}
 
 # The public subnets, minimum of 2, that are a part of the VPC(s)
 variable "public_subnets" {}
+
+# The docker image that will be deployed to ECS
+variable "docker_image" {
+  default = "nginx"
+}

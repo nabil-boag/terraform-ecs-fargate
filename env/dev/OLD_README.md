@@ -1,12 +1,29 @@
-# Environment Terraform
+# Environment Dev Terraform
 
-Creates environment's infrastructure.
+Creates the dev environment's infrastructure. These templates are designed to be customized.
+The optional components can be removed by simply deleting the `.tf` file.
+
+
+## Components
+
+| Name | Description | Optional |
+|------|-------------|:----:|
+| [main.tf][edm] | Terrform remote state, AWS provider, output |  |
+| [ecs.tf][ede] | ECS Cluster, Service, Task Definition, ecsTaskExecutionRole, CloudWatch Log Group |  |
+| [lb.tf][edl] | ALB, Target Group, S3 bucket for access logs  |  |
+| [nsg.tf][edn] | NSG for ALB and Task |  |
+| [lb-http.tf][edlhttp] | HTTP listener, NSG rule. Delete if HTTPS only | Yes |
+| [lb-https.tf][edlhttps] | HTTPS listener, NSG rule. Delete if HTTP only | Yes |
+| [dashboard.tf][edd] | CloudWatch dashboard: CPU, memory, and HTTP-related metrics | Yes |
+| [role.tf][edr] | Application Role for container | Yes |
+| [cicd.tf][edc] | IAM user that can be used by CI/CD systems | Yes |
+| [autoscale-perf.tf][edap] | Performance-based auto scaling | Yes |
+| [autoscale-time.tf][edat] | Time-based auto scaling | Yes |
+| [logs-logzio.tf][edll] | Ship container logs to logz.io | Yes |
+| [secretsmanager.tf][edsm] | Add a base secret to Secretsmanager | Yes |
+
 
 ## Usage
-
-*Before setting up a new environment, make sure you push a base image to the ECR after doing the base terraform.*
-
-You will also need to set up a new certificate and provide the ARN.
 
 ```
 # Sets up Terraform to run
@@ -15,6 +32,7 @@ $ terraform init
 # Executes the Terraform run
 $ terraform apply
 ```
+
 
 ## Inputs
 

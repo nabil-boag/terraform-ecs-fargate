@@ -3,11 +3,9 @@
  * Common variables to use in various Terraform files (*.tf)
  */
 
-# The AWS region to use for the bucket and registry; typically `us-east-1`.
-# Other possible values: `us-east-2`, `us-west-1`, or `us-west-2`.
-# Currently, Fargate is only available in `us-east-1`.
+# The AWS region to use for the bucket and registry;
 variable "region" {
-  default = "us-east-1"
+  default = "eu-west-1"
 }
 
 # The AWS profile to use, this would be the same value used in AWS_PROFILE.
