@@ -8,6 +8,8 @@ Creates environment's infrastructure.
 
 You will also need to set up a new certificate and provide the ARN.
 
+You will also need to [opt-in](https://aws.amazon.com/blogs/compute/migrating-your-amazon-ecs-deployment-to-the-new-arn-and-resource-id-format-2/) to newer ECS resource names
+
 ```
 # Sets up Terraform to run
 $ terraform init

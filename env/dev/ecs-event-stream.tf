@@ -1,7 +1,7 @@
 /**
  * ECS Event Stream
  * This component gives you full access to the ECS event logs
- * for your cluster by creating a cloudwatch event rule that listens for 
+ * for your cluster by creating a cloudwatch event rule that listens for
  * events for this cluster and calls a lambda that writes them to cloudwatch logs.
  * It then adds a cloudwatch dashboard the displays the results of a
  * logs insights query against the lambda logs
@@ -18,7 +18,7 @@ resource "aws_cloudwatch_event_rule" "ecs_event_stream" {
       "clusterArn": ["${aws_ecs_cluster.app.arn}"]
     }
   }
-  
+
 PATTERN
 
 }
@@ -110,7 +110,7 @@ dashboard_body = <<EOF
       "height": 18,
       "properties": {
         "query": "SOURCE '/aws/lambda/${var.app}-${var.environment}-ecs-event-stream' | fields @timestamp as time, detail.desiredStatus as desired, detail.lastStatus as latest, detail.stoppedReason as reason, detail.containers.0.reason as container_reason, detail.taskDefinitionArn as task_definition\n| filter @type != \"START\" and @type != \"END\" and @type != \"REPORT\"\n| sort detail.updatedAt desc, detail.version desc\n| limit 100",
-        "region": "us-east-1",
+        "region": "eu-west-1",
         "title": "ECS Event Log"
       }
     }

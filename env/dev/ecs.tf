@@ -41,11 +41,6 @@ resource "aws_ecs_cluster" "app" {
   tags = var.tags
 }
 
-# The default docker image to deploy with the infrastructure.
-variable "default_backend_image" {
-  default = "$var.docker_image"
-}
-
 resource "aws_appautoscaling_target" "app_scale_target" {
   service_namespace  = "ecs"
   resource_id        = "service/${aws_ecs_cluster.app.name}/${aws_ecs_service.app.name}"
@@ -69,7 +64,7 @@ resource "aws_ecs_task_definition" "app" {
 [
   {
     "name": "${var.container_name}",
-    "image": "${var.default_backend_image}",
+    "image": "${var.docker_image}",
     "essential": true,
     "portMappings": [
       {
@@ -98,13 +93,17 @@ resource "aws_ecs_task_definition" "app" {
       {
         "name": "ENVIRONMENT",
         "value": "${var.environment}"
+      },
+      {
+        "name": "NODE_ENV",
+        "value": "${var.environment}"
       }
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
         "awslogs-group": "/fargate/service/${var.app}-${var.environment}",
-        "awslogs-region": "us-east-1",
+        "awslogs-region": "eu-west-1",
         "awslogs-stream-prefix": "ecs"
       }
     }
@@ -139,7 +138,7 @@ resource "aws_ecs_service" "app" {
   propagate_tags = "SERVICE"
 
   # workaround for https://github.com/hashicorp/terraform/issues/12634
-  depends_on = [aws_alb_listener.http]
+  depends_on = [aws_alb_listener.https]
 
   # [after initial apply] don't override changes made to task_definition
   # from outside of terrraform (i.e.; fargate cli)

@@ -5,7 +5,7 @@ environment = "dev"
 internal = false
 container_port = "80"
 replicas = "2"
-health_check = "/health"
+health_check = "/"
 region = "eu-west-1"
 aws_profile = "nabil"
 saml_role = "admin"
@@ -19,5 +19,5 @@ tags = {
   customer      = "my-customer"
   contact-email = "me@example.com"
 }
-docker_image = "108610331730.dkr.ecr.eu-west-1.amazonaws.com/nabil-demo:latest"
+docker_image = "nginx"
 certificate_arn =	"arn:aws:acm:eu-west-1:108610331730:certificate/f40d714e-4c26-47d0-a390-9ebb6a7df0f0"
