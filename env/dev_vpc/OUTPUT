@@ -1,0 +1,25 @@
+private_az_route_table_ids = {
+  eu-west-1a = rtb-0a8e4a0e566f4dee8
+  eu-west-1b = rtb-0b4ed101e5041ddbd
+  eu-west-1c = rtb-055b5ad282e519329
+}
+private_az_subnet_ids = {
+  eu-west-1a = subnet-02fa3787de3737659
+  eu-west-1b = subnet-0f5654dc9e6d5726f
+  eu-west-1c = subnet-00f6856e57d6aa4b0
+}
+public_az_ngw_ids = {
+  eu-west-1a = nat-0dcdabed58cc92b2f
+  eu-west-1b = nat-010fac7e08b8faa85
+  eu-west-1c = nat-07de263df57534563
+}
+public_az_route_table_ids = {
+  eu-west-1a = rtb-0d89f007aa1d8f0d4
+  eu-west-1b = rtb-0f625b5bca5765653
+  eu-west-1c = rtb-0c55f85a82ec7b4b4
+}
+public_az_subnet_ids = {
+  eu-west-1a = subnet-0cc9f13136c092f43
+  eu-west-1b = subnet-0f957085c5a464b81
+  eu-west-1c = subnet-0771c24e847583d1f
+}

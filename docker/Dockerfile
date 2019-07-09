@@ -8,3 +8,9 @@ RUN apk add --no-cache python3 zip && \
   rm -r /usr/lib/python*/ensurepip && \
   pip3 install --no-cache --upgrade pip setuptools wheel && \
   if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
+
+ARG USER_ID=500
+
+RUN adduser -S -u ${USER_ID} terraform
+USER terraform
+RUN mkdir /home/terraform/.ssh
