@@ -1,7 +1,7 @@
 # app/env to scaffold
 app = "nabil-demo"
 region = "eu-west-1"
-aws_profile = "default"
+aws_profile = "nabil"
 saml_role = "admin"
 tags = {
   application   = "nabil-demo"
